@@ -14,12 +14,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 80%;
+  height: auto;
 }
 
 .card-container {
   padding: 2px 16px;
+  margin-top: 0px;
+  margin-bottom: 15px;
 }
 
 .card-container h4 {
   font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.type-list {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }

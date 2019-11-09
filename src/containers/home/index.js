@@ -1,6 +1,6 @@
-import React from 'react'
-import Navbar from '../../components/navbar'
-import CardList from '../../components/cardlist'
+import React from 'react';
+import Navbar from '../../components/navbar';
+import CardList from '../../components/cardlist';
 
 const Home = () => {
   return (
@@ -8,7 +8,7 @@ const Home = () => {
       <Navbar />
       <CardList />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

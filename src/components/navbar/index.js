@@ -6,7 +6,7 @@ const Navbar = () => {
     <>
       <div className="nav">
         <div className="nav-header">
-          <div class="nav-title">
+          <div className="nav-title">
             Pokedex
           </div>
         </div>       
