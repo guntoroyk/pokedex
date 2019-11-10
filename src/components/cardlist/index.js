@@ -7,11 +7,16 @@ import { fetchPokemon } from '../../services/pokemon/actions';
 
 const CardList = () => {
   const dispatch = useDispatch()
-  const { pokemonList } = useSelector(state => state.pokemon)
+  const { pokemonList, total } = useSelector(state => state.pokemon)
+
   useEffect(() => {
     dispatch(fetchPokemon())
     // eslint-disable-next-line
   }, [])
+
+  const fetchMorePokemon = () => {
+    dispatch(fetchPokemon())
+  }
 
   if (!pokemonList) {
     return (
@@ -20,7 +25,7 @@ const CardList = () => {
   }
 
   return (
-    <>
+    <div className='container'>
       <div className='card-list'>
         {
           pokemonList.map(pokemon => (
@@ -28,7 +33,10 @@ const CardList = () => {
           ))
         }
       </div>
-    </>
+      <div className='btnLoadMore'>
+        <button onClick={ fetchMorePokemon } >Load more</button>
+      </div>
+    </div>
   )
 }
 

@@ -1,14 +1,30 @@
 import { FETCH_POKEMON } from './actionTypes';
-import { POKEMON_API } from '../api';
+import axios from 'axios';
+import store from '../../store'
 
-export const fetchPokemon = () => async dispatch => {
+export const fetchPokemon = (offset = 0) => async dispatch => {
+  const { pokemonList, next } = store.getState().pokemon
+    
   try {
-    const { data } = await POKEMON_API.get('/');
-    console.log(data.results, 'from pokemon action');
-    dispatch({
-      type: FETCH_POKEMON,
-      payload: data.results
-    })
+    if (pokemonList.length === 0) {
+      const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`);
+      dispatch({
+        type: FETCH_POKEMON,
+        payload: {
+          results: data.results,
+          next: data.next
+        }
+      });
+    } else {
+      const { data } = await axios.get(next);
+      dispatch({
+        type: FETCH_POKEMON,
+        payload: {
+          results: pokemonList.concat(data.results),
+          next: data.next
+        }
+      });
+    };
   } catch (error) {
     console.log(error);
   };

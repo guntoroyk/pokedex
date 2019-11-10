@@ -1,8 +1,8 @@
 import { FETCH_POKEMON } from '../actions/actionTypes';
 
 const initialState = {
-  pokemonList: null,
-
+  pokemonList: [],
+  next: null
 };
 
 const pokemonReducer = (state = initialState, action) => {
@@ -10,10 +10,11 @@ const pokemonReducer = (state = initialState, action) => {
     case FETCH_POKEMON:
       return {
         ...state,
-        pokemonList: action.payload
+        pokemonList: action.payload.results,
+        next: action.payload.next
       }
     default: 
-      return state
+      return state;
   };
 };
 
